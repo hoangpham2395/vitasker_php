@@ -32,7 +32,7 @@ include_once('../configuration/connect.php');
 		}
 
 		if (empty($errors)) {
-			$sql = "SELECT user_id FROM user WHERE user_name='".$username."' AND password = '".$password."'";
+			$sql = "SELECT id FROM users WHERE username='".$username."' AND password = '".$password."'";
 			$query = mysqli_query($conn, $sql);
 			$totalRows = mysqli_num_rows($query);
 			$rows = mysqli_fetch_array($query);
