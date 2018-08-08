@@ -76,7 +76,7 @@
             <li>
                 <sctrong>
                     <?php 
-                    $query = mysqli_query($conn, "SELECT COUNT(fb_id) as count FROM fboders");
+                    $query = mysqli_query($conn, "SELECT COUNT(oder_id) as count FROM fboders");
                     $row = mysqli_fetch_array($query);
                     ?>
                     <span><?php echo $row['count'];?></span>
