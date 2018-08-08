@@ -79,8 +79,16 @@
                     </thead>
                     <tbody>
                         <?php 
+                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+                        // Number user of page
+                        $perPage = (isset($_GET['perPage'])) ? $_GET['perPage'] : 10;    
+
+                        // First row
+                        $firstRow = ($page - 1) * $perPage;
+
                         $filter = isset($_GET['category_id']) ? " WHERE category_id = '".$_GET['category_id']."'" : "";
-                        $sql = "SELECT * FROM fboders".$filter;
+                        $sql = "SELECT * FROM fboders" . $filter . " LIMIT $firstRow, $perPage";
                         $query = mysqli_query($conn, $sql);
                         $no = 1;
 
@@ -116,8 +124,42 @@
                         ?>
                     </tbody>
                 </table>
-                <div class="row">
-                    
+                <?php 
+                $totalRow = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user"));
+                $totalPage = ceil($totalRow/$perPage);
+
+                $listPage = '';
+
+                if ($totalPage > 1) {
+                    for($i=1; $i <= $totalPage; $i++){
+                        if($i == $page){
+                            $listPage .= '<li class="page-item active"><a class="page-link" href="#">'.$i.'</a></li>';
+                        }
+                        else{
+                            $listPage .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?page_layout=usersp&page='.$i.'">'.$i.'</a></li>';
+                        }
+                    }
+                }
+                ?>
+
+                <!-- Pagination -->
+                
+                <div class="col-md-12 text-center">
+                    <ul class="pagination">
+                        <li class="page-item <?php echo ($page == 1) ? 'disabled' : ''; ?>">
+                            <a class="page-link" href='index.php?page_layout=users&page=<?php echo $page - 1; ?>' aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <?php echo $listPage; ?>
+                        <li class="page-item <?php echo ($page == $totalPage) ? 'disabled' : ''; ?>">
+                            <a class="page-link" href="index.php?page_layout=users&page=<?php echo $page + 1; ?>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
