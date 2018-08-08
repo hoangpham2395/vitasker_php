@@ -104,29 +104,9 @@
                                     <td><?php echo $row['phoneNumber']; ?></td>
                                     <td><?php echo $row['email']; ?></td>
                                     <td><?php echo $row['address']; ?></td>
-                                    <td><a href='index.php?page_layout=edit_fboder&id=<?php echo $row["fb_id"];?>' class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a></td>
+                                    <td><a href='index.php?page_layout=edit_fboder&id=<?php echo $row["oder_id"];?>' class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a></td>
                                     <td>
-                                        <a onclick="return deleteFboder();" href="function/fboders/delete.php?id=<?php echo $row['fb_id'];?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-                                        <!-- <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDelete-<?php echo $row['fb_id'];?>"><i class="fa fa-trash"></i></button>
-                                        <div id="modalDelete-<?php echo $row['fb_id'];?>" class="modal fade" role="dialog">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Delete Fboder</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
+                                        <a onclick="return confirm('Are you sure?');" href="/delete.php?id=<?php echo $row['oder_id'];?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 <?php
